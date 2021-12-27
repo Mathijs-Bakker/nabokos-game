@@ -3,15 +3,15 @@ use specs::{ Component, NullStorage, VecStorage, World, WorldExt };
 #[derive(Debug, Component, Clone, Copy)]
 #[storage(VecStorage)]
 pub struct Position {
-    x: u8,
-    y: u8,
-    z: u8,
+    pub x: u8,
+    pub y: u8,
+    pub z: u8,
 }
 
 #[derive(Component)]
 #[storage(VecStorage)]
 pub struct Renderable {
-    path: String,
+    pub path: String,
 }
 
 #[derive(Component)]
@@ -30,6 +30,14 @@ pub struct Box {}
 #[storage(VecStorage)]
 pub struct BoxSpot {}
 
+#[derive(Component, Default)]
+#[storage(NullStorage)]
+pub struct Movable;
+
+#[derive(Component, Default)]
+#[storage(NullStorage)]
+pub struct Immovable;
+
 pub fn register_components(world: &mut World) {
     world.register::<Position>();
     world.register::<Renderable>();
@@ -37,4 +45,6 @@ pub fn register_components(world: &mut World) {
     world.register::<Wall>();
     world.register::<Box>();
     world.register::<BoxSpot>();
+    world.register::<Movable>();
+    world.register::<Immovable>();
 }
